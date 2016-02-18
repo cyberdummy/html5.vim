@@ -38,6 +38,12 @@ let b:did_indent = 1
 setlocal indentexpr=HtmlIndentGet(v:lnum)
 setlocal indentkeys=o,O,*<Return>,<>>,{,},!^F
 
+if !exists('g:html5_indent_attrs_enable')
+    let g:html5_indent_attrs_enable=1
+endif
+if !exists('g:html5_indent_attrs')
+    let g:html5_indent_attrs="sw"
+endif
 
 let s:tags = []
 
@@ -361,6 +367,24 @@ fun! HtmlIndentGet(lnum)
             else
                 return indent(preline)
             endif
+        endif
+    endif
+
+    " based on code found @ https://mg.pov.lt/vim/indent/html.vim
+    if g:html5_indent_attrs_enable
+        if getline(lnum) =~ '<[^<>]*$'
+            if g:html5_indent_attrs ==? "sw"
+                let sw = &sw
+            elseif g:html5_indent_attrs ==? "aligntag"
+                let sw = strlen(substitute(getline(lnum), '<\w\+\s\+\zs[^<>]*$', '', '')) - indent(lnum)
+            else
+                let sw = g:html5_indent_attrs
+            endif
+
+            return indent(lnum)+sw
+        endif
+        if getline(lnum) =~ '^[^<>]*>'
+            let lnum = search('<[^<>]*$', 'bW')
         endif
     endif
 

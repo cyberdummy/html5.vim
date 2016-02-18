@@ -12,6 +12,7 @@ This plugin contributes to [vim-polyglot](https://github.com/sheerun/vim-polyglo
 - Support [microdata][microdata].
 - Support [RDFa][RDFa].
 - Support [WAI-ARIA][aria].
+- Support indentation of attribtues spanning lines.
 
 ## Install
 
@@ -41,6 +42,42 @@ Disable microdata attributes support:
 Disable WAI-ARIA attribute support:
 
     let g:html5_aria_attributes_complete = 0
+
+### Attribute Identation
+
+Disable attribute indentation:
+
+    let g:html5_indent_attrs_enable = 0
+
+Indent attributes by shiftwidth (default)
+
+    let g:html5_indent_attrs = "sw"
+
+Produces (if shiftwidth is set to 4 spaces)
+```html
+<input
+    type="text">
+```
+
+Indent attributes by tag 
+
+    let g:html5_indent_attrs = "aligntag"
+
+Produces
+```html
+<input
+      type="text">
+```
+
+Indent attributes by custom number of spaces
+
+    let g:html5_indent_attrs = 2
+
+Produces
+```html
+<input
+  type="text">
+```
 
 ## Change Log
 
