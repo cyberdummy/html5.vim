@@ -45,31 +45,31 @@ Disable WAI-ARIA attribute support:
 
 ### Attribute Identation
 
-Disable attribute indentation:
+*Disable attribute indentation:*
 
     let g:html5_indent_attrs_enable = 0
 
-Indent attributes by shiftwidth (default)
+*Indent attributes by shiftwidth (default):*
 
     let g:html5_indent_attrs = "sw"
 
-Produces (if shiftwidth is set to 4 spaces)
+Produces (if shiftwidth is set to 4 spaces):
 ```html
 <input
     type="text">
 ```
 
-Indent attributes by tag 
+*Indent attributes by tag:*
 
     let g:html5_indent_attrs = "aligntag"
 
-Produces
+Produces:
 ```html
 <input
       type="text">
 ```
 
-Indent attributes by custom number of spaces
+*Indent attributes by custom number of spaces:*
 
     let g:html5_indent_attrs = 2
 
